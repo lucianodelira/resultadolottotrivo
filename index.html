@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <!-- Segurança e boas práticas -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: data: blob:; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; frame-src *; connect-src *;">
+  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+  <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains; preload">
+  <meta http-equiv="Cross-Origin-Opener-Policy" content="same-origin">
+  <meta name="referrer" content="no-referrer" />
+  <!-- SEO e redes sociais -->
+  <title>LottoTrivo</title>
+  <meta name="description" content="A LottoTrivo club é a melhor plataforma de apostas com segurança, pagamentos instantâneos via Pix e suporte 24/7. Jogue e multiplique seus ganhos!" />
+  <meta name="keywords" content="LottoTrivo club, feitiiceira.vip, LottoTrivo, banca LottoTrivo, banca LottoTrivo vip, banca de apostas, apostas online, loterias, cassino, palpites esportivos, ganhar dinheiro, apostas seguras, pix rápido, LottoTrivo vip oficial, LottoTrivo vip login, LottoTrivo vip cadastro, LottoTrivo vip esportes, LottoTrivo vip cassino, LottoTrivo vip futebol, LottoTrivo vip resultados, LottoTrivo vip apostas seguras, LottoTrivo vip pix imediato, LottoTrivo vip grupo vip, LottoTrivo vip dicas, LottoTrivo vip análises, LottoTrivo vip estratégias" />
+  <meta name="author" content="LottoTrivo" />
+  <meta name="robots" content="index, follow" />
+  <!-- Open Graph / Facebook -->
+  <meta property="og:title" content="LottoTrivo - A Banca de Apostas Mais Confiável e Rentável" />
+  <meta property="og:description" content="Ganhe dinheiro com apostas seguras na LottoTrivo. Pix rápido e suporte 24h. Jogue agora e maximize seus lucros!" />
+  <meta property="og:image" content="https://lottotrivo.com/logo/logo.png" />
+  <meta property="og:url" content="https://www.LottoTrivo.net" />
+  <meta property="og:type" content="website" />
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="LottoTrivo club - A Banca de Apostas Mais Confiável e Rentável" />
+  <meta name="twitter:description" content="Aposte com segurança e receba via Pix na hora. Acesse agora a LottoTrivo!" />
+  <meta name="twitter:image" content="https://lottotrivo.com/logo/logo.png" />
+  <!-- Favicon -->
+  <link rel="icon" href="https://lottotrivo.com/logo/logo.png" type="image/png">
+  <link rel="shortcut icon" href="https://lottotrivo.com/logo/logo.png" type="image/png">
+  <link rel="icon" href="https://lottotrivo.com/logo/logo.png" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="canonical" href="https://www.LottoTrivo.net" />
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      background: #000;
+      font-family: Arial, sans-serif;
+      color: #fff;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      width: 100%;
+    }
+    .iframe-container {
+      flex: 1;
+      width: 100%;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .buttons {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 10px;
+      background: #000;
+      width: 100%;
+      box-sizing: border-box;
+      position: relative;
+      flex-wrap: wrap;
+    }
+    /* Estilo do menu hambúrguer */
+    #menu-hamburguer {
+      background: #ff4d4d;
+      color: white;
+      border-radius: 30px;
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      user-select: none;
+      z-index: 10000;
+    }
+    #menu-hamburguer svg {
+      width: 24px;
+      height: 24px;
+      margin-right: 8px;
+      fill: white;
+      transition: transform 0.3s ease;
+    }
+    #menu-hamburguer.open svg {
+      transform: rotate(90deg);
+    }
+
+    /* ===== BOTÃO JOGAR SEMPRE VISÍVEL ===== */
+    #botao-jogar {
+      background: linear-gradient(135deg, #ff0000, #ff4d4d, #ff1a1a);
+      color: #fff;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      font-weight: 900;
+      letter-spacing: 1.2px;
+      width: auto;
+      min-width: 110px;
+      height: 48px;
+      padding: 0 22px;
+      box-shadow: 0 0 18px rgba(255, 0, 0, 0.75), 0 4px 12px rgba(0,0,0,0.4);
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      animation: pulseJogar 1.6s infinite;
+      text-transform: uppercase;
+      z-index: 10000;
+    }
+    #botao-jogar:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 28px rgba(255, 0, 0, 1), 0 6px 18px rgba(0,0,0,0.5);
+    }
+    @keyframes pulseJogar {
+      0% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.75); }
+      70% { box-shadow: 0 0 0 14px rgba(255, 0, 0, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
+    }
+    /* ===== FIM BOTÃO JOGAR ===== */
+
+    /* Container dos botões (menu) */
+    .botoes-container {
+      position: absolute;
+      bottom: 65px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      justify-content: center;
+      gap: 6px;
+      padding: 4px 6px;
+      background: rgba(0, 0, 0, 0.85);
+      border-radius: 10px;
+      transition: max-height 0.3s ease, opacity 0.3s ease;
+      max-height: 0;
+      opacity: 0;
+      pointer-events: none;
+      width: auto;
+      max-width: 95vw;
+      z-index: 9999;
+    }
+    .botoes-container.open {
+      max-height: 70px;
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .botao-flutuante {
+      background-color: #ff4d4d;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      font-size: 22px;
+      width: 55px;
+      height: 55px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 0;
+      flex-shrink: 0;
+    }
+    .botao-flutuante img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .botao-flutuante:hover {
+      transform: scale(1.1);
+    }
+    #botao-blaze {
+      background-color: #000;
+      border: 2px solid #ff0000;
+      animation: pulse 1.5s infinite;
+      padding: 8px;
+    }
+    #botao-blaze img {
+      width: 120%;
+      height: 120%;
+      object-fit: contain;
+    }
+    #botao-brasil {
+      background-color: #009c3b;
+      border: 2px solid #fedf00;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.6); }
+      70% { box-shadow: 0 0 0 10px rgba(255, 0, 0, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
+    }
+    .botoes-container::-webkit-scrollbar {
+      display: none;
+    }
+    .botoes-container {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    @media (max-width: 500px) {
+      .botao-flutuante {
+        width: 48px;
+        height: 48px;
+        font-size: 18px;
+      }
+      .botao-flutuante img {
+        width: 80%;
+        height: 80%;
+      }
+      #botao-jogar {
+        font-size: 14px;
+        min-width: 95px;
+        height: 44px;
+        padding: 0 16px;
+      }
+      #menu-hamburguer {
+        padding: 7px 12px;
+        font-size: 13px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="iframe-container">
+      <iframe allow='clipboard-read; clipboard-write' frameborder='0' height='95%' id='embeddedIframe' loading='lazy' sandbox='allow-scripts allow-same-origin' src='https://lottotrivo.com' title='Conteúdo interativo da LottoTrivo' width='100%'></iframe>
+    </div>
+
+    <div class="buttons">
+      <!-- BOTÃO JOGAR SEMPRE VISÍVEL -->
+      <button id="botao-jogar" title="Jogar Agora">
+        JOGAR
+      </button>
+
+      <!-- Menu hambúrguer -->
+      <div id="menu-hamburguer" aria-label="Menu Bancas Parceiras" role="button" tabindex="0">
+        <svg viewbox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M3 6h18M3 12h18M3 18h18" stroke="white" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span>OUTRAS BANCAS PARA JOGAR!</span>
+      </div>
+
+      <!-- Container de botões (abre ao clicar no menu) -->
+      <div class="botoes-container" id="botoes-container">
+        <button id="botao-bola" class="botao-flutuante" title="Brasileirão ⚽">
+          <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEilbrqWRLPNsbW6WoWMAOrGQzc1SGVqKVqZ4BcKFjRUAKLzn1Z9PbIDUlqukU1y6ulZE61QUZ8ZRZ2T7M66goqwYDuaOQur0pV8piHPB2LMDGWSSsT6RXT9ajTRnTJ_eSk7joZ8KA3PJ2GJTlkeNT-Q6Y6UN1QfExNtjEK5UjWoPQbTXKKbFShsl2INN0eO/s200/4297950.png&w=1080&q=75" alt="Blaze" />
+        </button>
+        
+        <button id="botao-acertosclub" class="botao-flutuante" title="Acertos Club">
+          <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhjP_DDrfM-z9sNWLEimMl-7HvoyN-D3D_EKBnW3Xj_qH2tjERcQzv21MChv8lD5kUJAzhT9_q6livlEmy0rE8qc6jXkIs_O2skEFHUJEcKwwecesKIBFHaITULB5Zzqs87X5AzRmig7o_9fEao_BUU6nnIOF7pYJGiOJCcY7jEb1PRMHqISYcCnnVXb3fU/s200/IMG-20240927-WA0455__2_-removebg-removebg-preview%20%281%29%20%281%29.png" alt="acertosclub" />
+        </button>
+        
+        <button id="botao-brasil" class="botao-flutuante" title="palpites">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZLl2_tC2wQxqZ13HprhlWeBFJLKQHJQcL9dFxCj9M7A&s=10" alt="Brasil" />
+        </button>
+
+        <button id="botao-tigerclub" class="botao-flutuante" title="Tiger Club">
+          <img src="https://assets.trivo.bet/images/superacertos.png" alt="tigerclub" />
+        </button>
+
+        <button id="botao-vivi" class="botao-flutuante" title="sorteclub">
+          <img src="https://assets.trivo.bet/images/feiticeira2.png" alt="vivi" />
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Banner de instalação -->
+  <div id="install-banner" style="display:none; position: fixed; bottom: 20px; left: 20px; right: 20px; background: #111; color: #fff; padding: 16px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.6); z-index: 9999; text-align: center;">
+    <p style="margin: 0 0 10px;">📲 Instale nosso app para acesso mais rápido e fácil!</p>
+    <button onclick="instalarApp()" style="background: #4CAF50; color: white; border: none; padding: 10px 20px; border-radius: 6px; font-weight: bold; cursor: pointer;">Instalar App</button>
+  </div>
+
+  <script>
+    const menu = document.getElementById('menu-hamburguer');
+    const botoesContainer = document.getElementById('botoes-container');
+    function toggleMenu() {
+      const aberto = menu.classList.toggle('open');
+      if (aberto) {
+        botoesContainer.classList.add('open');
+      } else {
+        botoesContainer.classList.remove('open');
+      }
+    }
+    menu.addEventListener('click', toggleMenu);
+    // Permitir abrir/fechar com Enter ou Espaço para acessibilidade
+    menu.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleMenu();
+      }
+    });
+
+    // Eventos dos botões
+    document.getElementById("botao-bola").addEventListener("click", function () {
+      window.location.href = "https://chat.whatsapp.com/KokcnW2aftNGVBjdELZRZK";
+    });
+    document.getElementById("botao-tigerclub").addEventListener("click", function () {
+      window.open("https://app.superacertos.club/pr/DiNatQPp", "_blank");
+    });
+    document.getElementById("botao-acertosclub").addEventListener("click", function () {
+      window.open("https://app.acertos.club/pr/qcGoRMK0", "_blank");
+    });
+    document.getElementById("botao-brasil").addEventListener("click", function () {
+      window.open("https://www.youtube.com/@acertosclub", "_blank");
+    });
+    document.getElementById("botao-vivi").addEventListener("click", function () {
+      window.open("https://app.feiticeira.club/pr/PRBJ9rmd", "_blank");
+    });
+
+    // ===== BOTÃO JOGAR =====
+    document.getElementById("botao-jogar").addEventListener("click", function () {
+      window.open("https://app.acertos.club/pr/sbrqjugZ", "_blank");
+    });
+    // ===== FIM BOTÃO JOGAR =====
+
+    // Service Worker e instalação do app
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(reg => console.log('[SW] Registrado com sucesso!', reg))
+        .catch(err => console.error('[SW] Erro ao registrar:', err));
+    }
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      if (!localStorage.getItem('appInstalado')) {
+        document.getElementById('install-banner').style.display = 'block';
+      }
+    });
+    function instalarApp() {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choiceResult) => {
+          if (choiceResult.outcome === 'accepted') {
+            console.log('Usuário aceitou instalar o app');
+            localStorage.setItem('appInstalado', 'true');
+          } else {
+            console.log('Usuário recusou instalar o app');
+          }
+          document.getElementById('install-banner').style.display = 'none';
+          deferredPrompt = null;
+        });
+      } else {
+        alert("Você já instalou ou ainda não pode instalar.");
+      }
+    }
+  </script>
+
+<!-- BANNER WHATSAPP - GRUPO DE PALPITES -->
+<!-- ========================================= -->
+<div id="whats-banner" style="display: none;">
+  <button
+    onclick="fecharWhatsBanner()"
+    class="whats-fechar"
+    aria-label="Fechar banner"
+  >
+    ×
+  </button>
+  <div class="whats-icon-top">
+    <img
+      src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+      alt="WhatsApp"
+    >
+  </div>
+  <h2>🔥 ENTRE NO GRUPO DE PALPITES!</h2>
+  <p>
+    Receba palpites, informações e novidades<br>
+    diretamente no seu WhatsApp.
+  </p>
+  <a
+    href="https://chat.whatsapp.com/KokcnW2aftNGVBjdELZRZK"
+    target="_blank"
+    rel="noopener noreferrer"
+    onclick="fecharWhatsBanner()"
+    class="whats-button"
+  >
+    <img
+      src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+      alt="WhatsApp"
+    >
+    <span>
+      PARTICIPAR DO GRUPO
+    </span>
+  </a>
+  <div class="whats-rodape">
+    ✅ Grupo gratuito • Entre agora!
+  </div>
+</div>
+
+<style>
+#whats-banner {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 380px;
+  max-width: calc(100% - 30px);
+  padding: 35px 25px 28px;
+  background:
+    radial-gradient(
+      circle at top,
+      #123c28 0%,
+      #111 45%,
+      #080808 100%
+    );
+  border: 2px solid #25D366;
+  border-radius: 22px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  z-index: 999999;
+  box-shadow:
+    0 0 15px rgba(37,211,102,.7),
+    0 0 40px rgba(37,211,102,.4),
+    0 15px 50px rgba(0,0,0,.8);
+  animation:
+    bannerEntrada .5s ease,
+    bannerBrilho 2s infinite;
+}
+@keyframes bannerEntrada {
+  from {
+    opacity: 0;
+    transform:
+      translate(-50%, -45%)
+      scale(.8);
+  }
+  to {
+    opacity: 1;
+    transform:
+      translate(-50%, -50%)
+      scale(1);
+  }
+}
+@keyframes bannerBrilho {
+  0%, 100% {
+    box-shadow:
+      0 0 15px rgba(37,211,102,.6),
+      0 0 40px rgba(37,211,102,.3),
+      0 15px 50px rgba(0,0,0,.8);
+  }
+  50% {
+    box-shadow:
+      0 0 25px rgba(37,211,102,1),
+      0 0 60px rgba(37,211,102,.55),
+      0 15px 50px rgba(0,0,0,.8);
+  }
+}
+.whats-fechar {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 35px;
+  height: 35px;
+  border: 0;
+  border-radius: 50%;
+  background: #ff1744;
+  color: #fff;
+  font-size: 25px;
+  font-weight: bold;
+  line-height: 35px;
+  cursor: pointer;
+  box-shadow:
+    0 0 12px rgba(255,23,68,.6);
+  transition: .2s;
+}
+.whats-fechar:hover {
+  transform: scale(1.12);
+  background: #ff0033;
+}
+.whats-icon-top {
+  width: 75px;
+  height: 75px;
+  margin: 0 auto 12px;
+  border-radius: 50%;
+  background: #25D366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 0 15px #25D366,
+    0 0 35px rgba(37,211,102,.6);
+  animation: iconPulse 1.5s infinite;
+}
+.whats-icon-top img {
+  width: 48px;
+  height: 48px;
+}
+@keyframes iconPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+}
+#whats-banner h2 {
+  margin: 8px 0 10px;
+  color: #25D366;
+  font-size: 23px;
+  font-weight: 900;
+  font-family: Arial, sans-serif;
+  text-shadow:
+    0 0 8px rgba(37,211,102,.8);
+}
+#whats-banner p {
+  margin: 0;
+  color: #ddd;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.whats-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 20px;
+  padding: 16px 15px;
+  background:
+    linear-gradient(
+      45deg,
+      #00c853,
+      #25D366,
+      #00e676
+    );
+  color: #fff;
+  border-radius: 14px;
+  text-decoration: none;
+  font-size: 17px;
+  font-weight: 900;
+  letter-spacing: .3px;
+  box-shadow:
+    0 5px 20px rgba(37,211,102,.5);
+  animation: buttonPulse 1.8s infinite;
+  transition: .2s;
+}
+.whats-button img {
+  width: 30px;
+  height: 30px;
+}
+.whats-button:hover {
+  transform: scale(1.04);
+  box-shadow:
+    0 0 20px rgba(37,211,102,1),
+    0 0 40px rgba(37,211,102,.5);
+}
+@keyframes buttonPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.025);
+  }
+}
+.whats-rodape {
+  margin-top: 14px;
+  color: #25D366;
+  font-size: 12px;
+  font-weight: bold;
+}
+@media (max-width: 480px) {
+  #whats-banner {
+    width: 330px;
+    padding: 30px 20px 23px;
+  }
+  #whats-banner h2 {
+    font-size: 20px;
+  }
+  #whats-banner p {
+    font-size: 13px;
+  }
+  .whats-button {
+    font-size: 15px;
+    padding: 15px 10px;
+  }
+}
+.whats-banner-fechando {
+  opacity: 0 !important;
+  transform:
+    translate(-50%, -50%)
+    scale(.8) !important;
+  transition: .25s ease;
+}
+</style>
+
+<script>
+function deveMostrarBanner() {
+  const hoje = new Date().toDateString();
+  const ultimaExibicao = localStorage.getItem('whatsBannerUltimaExibicao');
+  if (ultimaExibicao === hoje) {
+    return false;
+  }
+  return true;
+}
+function marcarBannerComoExibido() {
+  const hoje = new Date().toDateString();
+  localStorage.setItem('whatsBannerUltimaExibicao', hoje);
+}
+function fecharWhatsBanner() {
+  const banner = document.getElementById("whats-banner");
+  if (!banner) return;
+  marcarBannerComoExibido();
+  banner.classList.add("whats-banner-fechando");
+  setTimeout(function () {
+    banner.remove();
+  }, 250);
+}
+document.addEventListener('DOMContentLoaded', function () {
+  const banner = document.getElementById("whats-banner");
+  if (!banner) return;
+  if (deveMostrarBanner()) {
+    banner.style.display = "block";
+  } else {
+    banner.remove();
+  }
+});
+</script>
+
+   <!-- ANÚNCIO DIÁRIO -->
+<style>
+#anuncio-overlay{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.45);
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:999999;
+    opacity:0;
+    visibility:hidden;
+    transition:.3s;
+}
+#anuncio-overlay.show{
+    opacity:1;
+    visibility:visible;
+}
+#anuncio-box{
+    position:relative;
+    max-width:90%;
+    max-height:90%;
+    animation:zoom .25s ease;
+}
+#anuncio-img{
+    display:block;
+    max-width:100%;
+    max-height:90vh;
+    border-radius:12px;
+    box-shadow:0 10px 40px rgba(0,0,0,.4);
+    cursor:pointer;
+}
+#fechar-anuncio{
+    position:absolute;
+    top:-15px;
+    right:-15px;
+    width:38px;
+    height:38px;
+    border:none;
+    border-radius:50%;
+    background:#e53935;
+    color:#fff;
+    font-size:24px;
+    font-weight:bold;
+    cursor:pointer;
+    box-shadow:0 3px 10px rgba(0,0,0,.4);
+}
+#fechar-anuncio:hover{
+    background:#c62828;
+}
+@keyframes zoom{
+    from{
+        transform:scale(.85);
+        opacity:0;
+    }
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+</style>
+<div id="anuncio-overlay">
+    <div id="anuncio-box">
+        <button id="fechar-anuncio">&times;</button>
+        <img
+            id="anuncio-img"
+            src="anuncio.png"
+            alt="Anúncio">
+    </div>
+</div>
+<script>
+(function(){
+    const LINK = "https://login.lottotrivo.net";
+    const STORAGE_KEY = "anuncio_visto";
+    const hoje = new Date().toISOString().slice(0,10);
+    const overlay = document.getElementById("anuncio-overlay");
+    const imagem = document.getElementById("anuncio-img");
+    const fechar = document.getElementById("fechar-anuncio");
+    if(localStorage.getItem(STORAGE_KEY) !== hoje){
+        overlay.classList.add("show");
+    }
+    function ocultar(){
+        overlay.classList.remove("show");
+        localStorage.setItem(STORAGE_KEY, hoje);
+    }
+    fechar.addEventListener("click", function(e){
+        e.stopPropagation();
+        ocultar();
+    });
+    imagem.addEventListener("click", function(){
+        ocultar();
+        window.location.href = LINK;
+    });
+})();
+</script>
+  
+</body>
+</html>
